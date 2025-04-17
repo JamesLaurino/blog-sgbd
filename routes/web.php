@@ -21,6 +21,10 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/blog', [BlogController::class,'index'])->name('blog.index');
 
+Route::get("/admin/add", [AdminController::class,'add'])
+    ->middleware("auth")
+    ->name('admin.index');
+
 Route::get("/admin", [AdminController::class,'index'])
     ->middleware("auth")
     ->name('admin.index');
