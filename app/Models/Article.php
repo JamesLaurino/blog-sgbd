@@ -12,7 +12,8 @@ class Article extends Model
         'title',
         'body',
         'img_path',
-        'published_at'
+        'published_at',
+        "user_id"
     ];
 
     public function user() {

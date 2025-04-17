@@ -25,4 +25,8 @@ Route::get("/admin", [AdminController::class,'index'])
     ->middleware("auth")
     ->name('admin.index');
 
+Route::POST("/blog", [BlogController::class,'create'])
+    ->middleware("auth")
+    ->name('blog.create');
+
 require __DIR__.'/auth.php';
