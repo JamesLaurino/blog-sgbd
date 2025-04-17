@@ -27,8 +27,8 @@
             @foreach($articles as $article)
                 <tr>
                     <td>{{$article->id}}</td>
-                    <td>{{$article->title}}</td>
-                    <td>{{$article->body}}</td>
+                    <td>{{substr($article->title,1,10)}}</td>
+                    <td>{{substr($article->body,1,10)}}</td>
                     <td>{{$article->img_path}}</td>
                     <td>{{$article->user_id}}</td>
                 </tr>
