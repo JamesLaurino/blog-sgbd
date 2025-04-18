@@ -15,10 +15,32 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $article->title }}"</h5>
                 <p class="card-text">{{ $article->body }}</p>
-                <a href="{{ route('admin.index') }}" class="btn btn-primary">
+                <a href="{{ route('blog.index') }}" class="btn btn-primary">
                     back
                 </a>
             </div>
+
+            @foreach($article->comments as $comment)
+                <div class="m-3 p-3 shadow">
+                    <p>{{$comment->body}}</p>
+                </div>
+            @endforeach
+
         </div>
+
+        <div class="ml-5">
+            <form method="POST" action="{{route('blog.create')}}"
+                  class="form shadow p-4">
+                @csrf
+                <div class="form-group">
+                    <label for="body">Votre commentaire</label>
+                    <textarea class="form-control" name="body"
+                              id="body" cols="30" rows="5"></textarea>
+                </div>
+                <button class="btn btn-dark text-white mt-3"
+                        type="submit">Poster</button>
+            </form>
+        </div>
+
     </div>
 @endsection

@@ -23,7 +23,9 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ $article->title }}</h5>
                             <p class="card-text">{{ $article->body }}</p>
-{{--                            <a href="#" class="btn btn-primary mt-auto">Go somewhere</a>--}}
+                            <a href="{{ route('blog.show', $article->id) }}" class="btn btn-primary">
+                                En savoir plus ?
+                            </a>
                         </div>
                     </div>
                 </div>
