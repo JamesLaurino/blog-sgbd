@@ -29,18 +29,21 @@
         </div>
 
         <div class="ml-5">
-            <form method="POST" action="{{route('blog.create')}}"
+            <form method="POST" action="{{route('comment.create')}}"
                   class="form shadow p-4">
                 @csrf
                 <div class="form-group">
                     <label for="body">Votre commentaire</label>
-                    <textarea class="form-control" name="body"
-                              id="body" cols="30" rows="5"></textarea>
+                    <textarea class="form-control"
+                              name="body"
+                              id="body"
+                              cols="30"
+                              rows="5"></textarea>
                 </div>
+                <input type="hidden" id="postId" name="id" value="{{$article->id}}" />
                 <button class="btn btn-dark text-white mt-3"
                         type="submit">Poster</button>
             </form>
         </div>
-
     </div>
 @endsection

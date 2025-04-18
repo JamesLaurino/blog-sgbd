@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\comment\CommentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\blog\BlogController;
@@ -29,6 +30,10 @@ Route::POST("/blog", [BlogController::class,'create'])
     ->middleware("auth")
     ->name('blog.create');
 
+
+Route::POST("/comment", [CommentController::class,'create'])
+    ->middleware("auth")
+    ->name('comment.create');
 
 
 Route::get("/admin/add", [AdminController::class,'add'])
