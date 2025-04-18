@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\blog\BlogController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\user\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +31,9 @@ Route::POST("/blog", [BlogController::class,'create'])
     ->middleware("auth")
     ->name('blog.create');
 
+Route::PUT("/user", [UserController::class,'updateAvatar'])
+    ->middleware("auth")
+    ->name('user.updateAvatar');
 
 Route::POST("/comment", [CommentController::class,'create'])
     ->middleware("auth")

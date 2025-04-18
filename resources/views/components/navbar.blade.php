@@ -9,11 +9,17 @@
         <span class="h3 mr-3">Mon blog</span>
     </div>
 
-    @auth
+    @if(auth()->user()->img_avatar)
+        <div class="my-2 my-lg-0 mr-5">
+            <a class="nav-link text-white" href="/dashboard">
+                <img width="50px" height="50px" src="{{ asset('storage/uploads/' . auth()->user()->img_avatar) }}" />
+            </a>
+        </div>
+        @else
         <div class="my-2 my-lg-0 mr-5">
             <a class="nav-link text-white" href="/dashboard">Dashbord</a>
         </div>
-    @endauth
+    @endif
 
     @guest
         <div class="my-2 my-lg-0 mr-5">
