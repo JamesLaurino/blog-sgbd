@@ -12,7 +12,7 @@
     @if(auth()->user()->img_avatar)
         <div class="my-2 my-lg-0 mr-5">
             <a class="nav-link text-white" href="/dashboard">
-                <img width="50px" height="50px" src="{{ asset('storage/uploads/' . auth()->user()->img_avatar) }}" />
+                <img width="50px" class="rounded-circle" height="50px" src="{{ asset('storage/uploads/' . auth()->user()->img_avatar) }}" />
             </a>
         </div>
         @else
