@@ -21,6 +21,7 @@
                 <th scope="col">body</th>
                 <th scope="col">path</th>
                 <th scope="col">user</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -31,6 +32,15 @@
                     <td>{{substr($article->body,1,10)}}</td>
                     <td>{{$article->img_path}}</td>
                     <td>{{$article->user_id}}</td>
+                    <td class="py-2 px-4 border-b">
+                        <a href="{{ route('admin.show', $article->id) }}" class="btn btn-primary">Voir</a>
+                        <a href="{{ route('admin.edit', $article->id) }}" class="btn btn-warning">Modifier</a>
+{{--                        <form method="POST" action="{{ route('users.destroy', $user->id) }}">--}}
+{{--                            @method("DELETE")--}}
+{{--                            @csrf--}}
+{{--                            <button class="text-yellow-500 ml-2" >Supprimé</button>--}}
+{{--                        </form>--}}
+                    </td>
                 </tr>
             @endforeach
             </tbody>

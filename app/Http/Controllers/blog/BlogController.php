@@ -16,6 +16,25 @@ class BlogController extends Controller
         return view("blogs.index",["articles" => $articles]);
     }
 
+    public function show($id)
+    {
+        $article = Article::findOrFail($id);
+        return view("blogs.show",["article" => $article]);
+    }
+
+    public function edit($id)
+    {
+        $articles = Article::all();
+        return view("blogs.index",["articles" => $articles]);
+    }
+
+    public function destroy($id)
+    {
+        $articles = Article::all();
+        return view("blogs.index",["articles" => $articles]);
+    }
+
+
     public function create(Request $request)
     {
         $validatedData = $request->validate([
