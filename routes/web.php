@@ -51,5 +51,9 @@ Route::get("/admin", [AdminController::class,'index'])
     ->middleware("auth")
     ->name('admin.index');
 
+Route::delete("/admin/{id}", [AdminController::class,'destroy'])
+    ->middleware("auth")
+    ->name('admin.destroy');
+
 
 require __DIR__.'/auth.php';

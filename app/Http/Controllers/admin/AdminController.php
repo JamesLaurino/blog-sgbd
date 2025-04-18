@@ -31,6 +31,18 @@ class AdminController extends Controller
         return view("admin.edit",["article" => $article]);
     }
 
+    public function destroy($id)
+    {
+        $article = Article::findOrFail($id);
+        $pathLink = $article->img_path;
+
+        $article->delete();
+        Storage::disk('public')->delete('uploads/' . $pathLink);
+
+        return redirect()->route('admin.index')
+            ->with('success', 'Article supprimé avec succès.');
+    }
+
     public function update(Request $request)
     {
         if($request["img_path"]) {
