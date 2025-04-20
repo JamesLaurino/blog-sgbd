@@ -35,11 +35,6 @@
                     <td class="py-2 px-4 border-b">
                         <a href="{{ route('admin.show', $article->id) }}" class="btn btn-primary">Voir</a>
                         <a href="{{ route('admin.edit', $article->id) }}" class="btn btn-warning">Modifier</a>
-{{--                        <form method="POST" action="{{ route('users.destroy', $user->id) }}">--}}
-{{--                            @method("DELETE")--}}
-{{--                            @csrf--}}
-{{--                            <button class="text-yellow-500 ml-2" >Supprimé</button>--}}
-{{--                        </form>--}}
                     </td>
                 </tr>
             @endforeach

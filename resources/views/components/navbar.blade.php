@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark p-3">
     <div class="mr-auto">
-        <a class="navbar-brand ml-3 text-white" href="">
+        <a class="navbar-brand ml-3 text-white" href="{{ route('blog.index')}}">
             <span class="fas fa-book" style="font-size: 1.5rem;"></span>
         </a>
     </div>
