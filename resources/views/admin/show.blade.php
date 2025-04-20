@@ -20,14 +20,16 @@
                     <a href="{{ route('admin.index') }}" class="btn btn-primary">
                         Back
                     </a>
-                    <form method="POST" class="ml-3" action="{{ route('admin.destroy', $article->id) }}">
-                        @csrf
-                        @method("DELETE")
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                    <button class="btnModal btn btn-danger ml-3"
+                            data-toggle="modal"
+                            data-target="#delete-{{ $article->id }}">
+                        Delete
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+
+<x-modal-delete :articleId="$article->id"></x-modal-delete>
 
 @endsection
