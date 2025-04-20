@@ -1,6 +1,6 @@
 @extends("base")
 @section("title")
-    Mon titre
+    Accueil blog
 @endsection
 
 @section("nav")
@@ -32,6 +32,9 @@
             @endforeach
         </div>
     </div>
+@endsection
 
 
+@section("footer")
+    <x-footer></x-footer>
 @endsection
