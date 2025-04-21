@@ -4,6 +4,11 @@
             <span class="fas fa-book" style="font-size: 1.5rem;"></span>
         </a>
     </div>
+    <div class="mr-auto">
+        <a class="ml-2 text-white" href="{{ route('blog.publicPage', Auth::id())}}">
+            <span class="fas fa-user" style="font-size: 1.5rem;"></span>
+        </a>
+    </div>
 
     <div class="d-flex justify-content-center w-100 ml-5 text-white">
         <span class="h3 mr-3">Mon blog</span>

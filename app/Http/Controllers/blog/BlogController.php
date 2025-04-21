@@ -17,10 +17,10 @@ class BlogController extends Controller
         return view("blogs.index",["articles" => $articles]);
     }
 
-    public function publicPage()
+    public function publicPage($id)
     {
         $articles = Article::all()
-        ->where("user_id", Auth::id());
+        ->where("user_id", $id);
 
         return view("blogs.public-page",["articles" => $articles]);
     }
