@@ -21,6 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+/*************** BLOG ***************/
+
 Route::get('/blog', [BlogController::class,'index'])->name('blog.index');
 
 Route::get('/blog/{id}/show', [BlogController::class,'show'])->name('blog.show');
@@ -31,6 +33,15 @@ Route::POST("/blog", [BlogController::class,'store'])
     ->middleware("auth")
     ->name('blog.store');
 
+/*************** BLOG ***************/
+
+Route::POST("/rating", [\App\Http\Controllers\star\StarController::class,'store'])
+    ->middleware("auth")
+    ->name('rating.store');
+
+
+/*************** OTHER ***************/
+
 Route::PUT("/user", [UserController::class,'updateAvatar'])
     ->middleware("auth")
     ->name('user.updateAvatar');
@@ -39,7 +50,7 @@ Route::POST("/comment", [CommentController::class,'create'])
     ->middleware("auth")
     ->name('comment.create');
 
-
+/*************** ADMIN ******************/
 Route::get("/admin/add", [AdminController::class,'create'])
     ->middleware("auth")
     ->name('admin.create');

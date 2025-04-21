@@ -42,6 +42,20 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function stars() {
+        return $this->hasMany(Star::class);
+    }
+
+    public function starForArticle($articleId)
+    {
+        return $this->stars->firstWhere('article_id', $articleId);
+    }
+
+    public function starQuantityForArticle($articleId)
+    {
+        return $this->stars->firstWhere('article_id', $articleId)->quantity;
+    }
+
     /**
      * Get the attributes that should be cast.
      *

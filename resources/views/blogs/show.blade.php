@@ -15,9 +15,42 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $article->title }}"</h5>
                 <p class="card-text">{{ $article->body }}</p>
-                <a href="{{ route('blog.index') }}" class="btn btn-primary">
-                    back
-                </a>
+                <div class="container d-flex justify-content-between">
+                    <a href="{{ route('blog.index') }}" class="btn btn-primary">
+                        back
+                    </a>
+                    @auth
+                        @if(Auth::user()->starForArticle($article->id))
+                            <div id="star-rated" style="font-size: 2rem; color: gold;">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if($i <= Auth::user()->starQuantityForArticle($article->id))
+                                        <span>
+                                            {{ '★' }}
+                                        </span>
+                                    @else
+                                        <span>
+                                            {{ '☆' }}
+                                        </span>
+                                    @endif
+                                @endfor
+                            </div>
+                        @else
+                            <form id="rating-form" action="{{route("rating.store")}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="article_id" value="{{ $article->id }}">
+                                <input type="hidden" name="quantity" id="rating-input">
+
+                                <div id="star-rating" style="cursor: pointer; font-size: 2rem; color: gold;">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <span class="star" data-value="{{ $i }}">
+                                        {{ '☆' }}
+                                    </span>
+                                    @endfor
+                                </div>
+                            </form>
+                        @endif
+                    @endauth
+                </div>
             </div>
 
             @foreach($article->comments as $comment)
@@ -44,6 +77,57 @@
                 <button class="btn btn-dark text-white mt-3"
                         type="submit">Poster</button>
             </form>
+            <p>TODO => Afficher la liste des ratings par user</p>
         </div>
     </div>
 @endsection
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const stars = document.querySelectorAll(".star");
+        const ratingInput = document.getElementById("rating-input");
+        let selectedRating = parseInt(ratingInput.value) || 0;
+
+        function updateStars(rating) {
+            stars.forEach(function (star) {
+                const starValue = parseInt(star.dataset.value);
+                star.textContent = starValue <= rating ? "★" : "☆";
+            });
+        }
+
+        stars.forEach(function (star) {
+            const starValue = parseInt(star.dataset.value);
+
+            // Hover effect
+            star.addEventListener("mouseover", function () {
+                updateStars(starValue);
+            });
+
+            // Remove hover effect when mouse leaves the area
+            star.addEventListener("mouseout", function () {
+                updateStars(selectedRating);
+            });
+
+            // Click to select rating
+            star.addEventListener("click", function () {
+                selectedRating = starValue;
+                ratingInput.value = selectedRating;
+                updateStars(selectedRating);
+                document.getElementById("rating-form").submit();
+            });
+        });
+
+        // On page load, update based on current value
+        updateStars(selectedRating);
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('.star').forEach(function(star) {
+            star.addEventListener('click', function() {
+                console.log("test"); // Pour debug
+                const rating = this.getAttribute('data-value');
+                document.getElementById('rating-input').value = rating;
+                document.getElementById('rating-form').submit();
+            });
+        });
+    });
+</script>
