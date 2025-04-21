@@ -4,7 +4,6 @@ namespace App\Http\Controllers\blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
-use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,7 +34,7 @@ class BlogController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:25',

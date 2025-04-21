@@ -27,9 +27,9 @@ Route::get('/blog/{id}/show', [BlogController::class,'show'])->name('blog.show')
 
 Route::get('/blog/{id}/edit', [BlogController::class,'edit'])->name('blog.edit');
 
-Route::POST("/blog", [BlogController::class,'create'])
+Route::POST("/blog", [BlogController::class,'store'])
     ->middleware("auth")
-    ->name('blog.create');
+    ->name('blog.store');
 
 Route::PUT("/user", [UserController::class,'updateAvatar'])
     ->middleware("auth")
@@ -40,9 +40,9 @@ Route::POST("/comment", [CommentController::class,'create'])
     ->name('comment.create');
 
 
-Route::get("/admin/add", [AdminController::class,'add'])
+Route::get("/admin/add", [AdminController::class,'create'])
     ->middleware("auth")
-    ->name('admin.add');
+    ->name('admin.create');
 
 Route::get("/admin/{id}/show", [AdminController::class,'show'])
     ->middleware("auth")

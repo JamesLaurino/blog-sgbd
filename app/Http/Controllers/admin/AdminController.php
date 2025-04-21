@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-    public function add()
+    public function create()
     {
         return view("admin.add-form");
     }

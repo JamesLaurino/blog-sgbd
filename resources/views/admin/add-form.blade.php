@@ -16,7 +16,7 @@
         <p class="h3">Formulaire d'ajout d'un article</p>
     </div>
     <div class="container d-flex justify-content-center mt-5">
-        <form method="POST" action="{{route('blog.create')}}"
+        <form method="POST" action="{{route('blog.store')}}"
               enctype="multipart/form-data"
               class="form shadow p-4">
             @csrf
