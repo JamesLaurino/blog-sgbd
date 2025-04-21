@@ -1,6 +1,6 @@
 @extends("base")
 @section("title")
-    Accueil blog
+    Public blog
 @endsection
 
 @section("nav")
@@ -10,7 +10,6 @@
 @section("body")
     <x-display-blogs :articles="$articles"></x-display-blogs>
 @endsection
-
 
 @section("footer")
     <x-footer></x-footer>

@@ -30,6 +30,10 @@ Route::get('/blog/{id}/show', [BlogController::class,'show'])->name('blog.show')
 
 Route::get('/blog/{id}/edit', [BlogController::class,'edit'])->name('blog.edit');
 
+Route::get("/blog/public", [BlogController::class, "publicPage"])
+    ->middleware("auth")
+    ->name('blog.publicPage');
+
 Route::POST("/blog", [BlogController::class,'store'])
     ->middleware("auth")
     ->name('blog.store');

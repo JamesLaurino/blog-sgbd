@@ -17,6 +17,14 @@ class BlogController extends Controller
         return view("blogs.index",["articles" => $articles]);
     }
 
+    public function publicPage()
+    {
+        $articles = Article::all()
+        ->where("user_id", Auth::id());
+
+        return view("blogs.public-page",["articles" => $articles]);
+    }
+
     public function show($id)
     {
         $article = Article::findOrFail($id);
