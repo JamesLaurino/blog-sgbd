@@ -11,11 +11,22 @@ class StarController extends Controller
 {
     public function update(Request $request)
     {
-        dd($request["quantity"] . " " . $request["article_id"]);
 
-        //todo make the update
+        $validatedData = $request->validate([
+            'quantity' => 'required|min:1|max:5',
+            'article_id' => 'required|min:1',
+        ]);
 
-        return redirect()->route('blog.show')
+        $star = Star::all()
+            ->where("article_id", "=", $request["article_id"])
+            ->where("user_id", "=", Auth::id())
+            ->first();
+
+        $star->update([
+            'quantity' => $validatedData["quantity"]
+        ]);
+
+        return redirect()->route('blog.show', $request['article_id'])
             ->with('success', 'Rating crée avec succès.');
     }
 
