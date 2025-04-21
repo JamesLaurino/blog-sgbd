@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\blog\BlogController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\user\UserController;
+use \App\Http\Controllers\star\StarController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,11 +34,15 @@ Route::POST("/blog", [BlogController::class,'store'])
     ->middleware("auth")
     ->name('blog.store');
 
-/*************** BLOG ***************/
+/*************** RATING ***************/
 
-Route::POST("/rating", [\App\Http\Controllers\star\StarController::class,'store'])
+Route::POST("/rating", [StarController::class,'store'])
     ->middleware("auth")
     ->name('rating.store');
+
+Route::PUT("/rating", [StarController::class,'update'])
+    ->middleware("auth")
+    ->name('rating.update');
 
 
 /*************** OTHER ***************/

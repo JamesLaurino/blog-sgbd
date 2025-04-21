@@ -6,7 +6,9 @@ export default defineConfig({
         laravel({
             input: ['resources/css/app.css',
                 'resources/js/app.js',
-                'resources/css/materialize-design.css'],
+                'resources/css/materialize-design.css',
+                'resources/css/animation-star.css'
+            ],
             refresh: true,
         }),
     ],

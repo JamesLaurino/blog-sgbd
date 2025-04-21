@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Auth;
 
 class StarController extends Controller
 {
+    public function update(Request $request)
+    {
+        dd($request["quantity"] . " " . $request["article_id"]);
+
+        //todo make the update
+
+        return redirect()->route('blog.show')
+            ->with('success', 'Rating crée avec succès.');
+    }
+
     public function store(Request $request) {
 
         $validatedData = $request->validate([

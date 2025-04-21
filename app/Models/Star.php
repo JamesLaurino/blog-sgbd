@@ -13,4 +13,9 @@ class Star extends Model
         'user_id',
         "article_id"
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

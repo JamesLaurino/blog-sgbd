@@ -4,6 +4,7 @@ namespace App\Http\Controllers\blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Star;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,11 @@ class BlogController extends Controller
     public function show($id)
     {
         $article = Article::findOrFail($id);
-        return view("blogs.show",["article" => $article]);
+        $stars = Star::with('user')->where('article_id', $id)->get();
+        return view("blogs.show",[
+            "article" => $article,
+            "stars" => $stars,
+        ]);
     }
 
     public function edit($id)
