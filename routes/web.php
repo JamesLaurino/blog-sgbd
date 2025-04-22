@@ -7,6 +7,7 @@ use App\Http\Controllers\blog\BlogController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\user\UserController;
 use \App\Http\Controllers\star\StarController;
+use App\Http\Controllers\friend\FriendController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,6 +48,16 @@ Route::POST("/rating", [StarController::class,'store'])
 Route::PUT("/rating", [StarController::class,'update'])
     ->middleware("auth")
     ->name('rating.update');
+
+/*************** FRIEND **************/
+
+Route::POST("/friend", [FriendController::class, "store"])
+    ->middleware("auth")
+    ->name("friend.store");
+
+Route::DELETE("/friend", [FriendController::class, "destroy"])
+    ->middleware("auth")
+    ->name("friend.destroy");
 
 
 /*************** OTHER ***************/

@@ -23,6 +23,8 @@ return new class extends Migration
                 ->constrained('users')
                 ->cascadeOnDelete();
             $table->timestamps();
+
+            $table->unique(['user_id', 'friend_id']);
         });
     }
 

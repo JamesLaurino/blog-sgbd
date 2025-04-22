@@ -1,4 +1,35 @@
-@props(["articles"])
+@props(["articles", "user", "friends", "myFriends"])
+
+<div class="container d-flex justify-content-right mt-3">
+    <div class="shadow p-3">
+        <p>{{$user->name}}</p>
+        @if(auth()->user()->id != $user->id)
+            @if($friends->isEmpty())
+                <x-friend-form-add :friendId="$user->id"></x-friend-form-add>
+            @else
+                <x-friend-form-remove :friendId="$user->id"></x-friend-form-remove>
+            @endif
+
+        @else
+            <div>
+                <p>Amis</p>
+                <ul class="list-group list-group-flush">
+                    @foreach($myFriends as $friend)
+                        @if($friend->friend->id != auth()->user()->id)
+                            <a href="{{route('blog.publicPage', $friend->friend->id)}}"
+                               class="list-group-item">{{$friend->friend->name}}</a>
+                        @endif
+
+                        @if($friend->user->id != auth()->user()->id)
+                                <a href="{{route('blog.publicPage', $friend->friend->id)}}"
+                                   class="list-group-item">{{$friend->user->name}}</a>
+                        @endif
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+</div>
 
 <div class="container my-4">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">

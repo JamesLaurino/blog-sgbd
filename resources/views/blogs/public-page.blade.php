@@ -8,7 +8,11 @@
 @endsection
 
 @section("body")
-    <x-display-blogs :articles="$articles"></x-display-blogs>
+    <x-display-blogs :friends="$friends"
+                     :user="$user"
+                     :myFriends="$myFriends"
+                     :articles="$articles">
+    </x-display-blogs>
 @endsection
 
 @section("footer")

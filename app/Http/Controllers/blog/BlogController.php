@@ -4,6 +4,7 @@ namespace App\Http\Controllers\blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Friend;
 use App\Models\Star;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -22,16 +23,42 @@ class BlogController extends Controller
         $articles = Article::all()
         ->where("user_id", $id);
 
-        return view("blogs.public-page",["articles" => $articles]);
+        $user = User::findOrFail($id);
+        $authUser = Auth::id();
+
+        $friends = Friend::where(function ($query) use ($id, $authUser) {
+            $query->where('user_id', $id)
+                ->where('friend_id', $authUser);
+        })->orWhere(function ($query) use ($id, $authUser) {
+            $query->where('user_id', $authUser)
+                ->where('friend_id', $id);
+        })->get();
+
+
+        $myFriends = Friend::with(['user', 'friend'])
+            ->where('user_id', $authUser)
+            ->orWhere('friend_id', $authUser)
+            ->get();
+
+
+        return view("blogs.public-page",[
+            "articles" => $articles,
+            "user" => $user,
+            "friends" => $friends,
+            "myFriends" => $myFriends
+        ]);
     }
 
     public function show($id)
     {
         $article = Article::findOrFail($id);
         $stars = Star::with('user')->where('article_id', $id)->get();
+        $user = User::where("id", "=", $article->user_id)->first();
+
         return view("blogs.show",[
             "article" => $article,
             "stars" => $stars,
+            "user" => $user
         ]);
     }
 

@@ -19,6 +19,11 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $article->title }}"</h5>
                 <p class="card-text">{{ $article->body }}</p>
+                <p class="card-text">Auteur :
+                    <strong>
+                        <a href="{{route("blog.publicPage",$user->id)}}">{{$user->name}}</a>
+                    </strong>
+                </p>
                 <div class="container d-flex justify-content-between">
                     <a href="{{ route('blog.index') }}" class="btn btn-primary">
                         back
