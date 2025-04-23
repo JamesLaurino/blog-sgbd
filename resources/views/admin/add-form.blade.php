@@ -43,6 +43,7 @@
                 <input type="file" name="img_path" class="form-control-file" id="dog">
             </div>
             <button class="btn btn-dark text-white mt-3" type="submit">Ajouter</button>
+            <a href="{{route("blog.index")}}" class="btn btn-dark text-white mt-3">Retour</a>
         </form>
     </div>
 @endsection

@@ -2,7 +2,7 @@
 
 <div class="container d-flex justify-content-right mt-3">
     <div class="shadow p-3">
-        <p>{{$user->name}}</p>
+        <p>Welcome back <strong>{{$user->name}}</strong> !</p>
         @if(auth()->user()->id != $user->id)
             @if($friends->isEmpty())
                 <x-friend-form-add :friendId="$user->id"></x-friend-form-add>
@@ -12,7 +12,7 @@
 
         @else
             <div>
-                <p>Amis</p>
+                <p> - Amis</p>
                 <ul class="list-group list-group-flush">
                     @foreach($myFriends as $friend)
                         @if($friend->friend->id != auth()->user()->id)
@@ -26,6 +26,11 @@
                         @endif
                     @endforeach
                 </ul>
+                <div>
+                    <a class="text-dark" href="{{route("admin.create")}}">
+                        <strong>Ajouter un post</strong>
+                    </a>
+                </div>
             </div>
         @endif
     </div>
