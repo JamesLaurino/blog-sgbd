@@ -25,11 +25,18 @@
                     <input type="text" id="title" name="title" required>
                     <label for="title">Titre</label>
                 </span>
+                @error("title")
+                {{$message}}
+                @enderror
             </div>
             <div class="form-group">
                 <label for="body">Contenu</label>
                 <textarea class="form-control" name="body"
-                          id="body" rows="3"></textarea>
+                          id="body" rows="3">
+                </textarea>
+                @error("body")
+                {{$message}}
+                @enderror
             </div>
             <div class="form-group">
                 <label for="dog">Image</label>

@@ -1,6 +1,6 @@
 @props(["articles"])
 
-<div class="container d-flex justify-content-center align-items-center flex-column">
+<div class="container mt-5 d-flex justify-content-center align-items-center flex-column">
     @foreach($articles as $article)
         <div class="card shadow h-50 w-25 m-3">
             <img

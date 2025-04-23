@@ -25,7 +25,15 @@
             </div>
             @else
                 <div class="my-2 my-lg-0 mr-5">
-                    <x-trigram></x-trigram>
+                    @php
+                        $trigram = \App\Helpers\TrigramHelper::toTrigram(auth()->user()->name);
+                    @endphp
+
+                    <a href="/dashboard"
+                       class="nav-link text-dark rounded-circle d-flex justify-content-center align-items-center"
+                       style="background-color: {{"#" . $trigram['color'] }}; width: 40px; height: 40px;">
+                        {{ $trigram['firstLetter'] . $trigram['lastLetters'] }}
+                    </a>
                 </div>
         @endif
     @endauth

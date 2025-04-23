@@ -1,4 +1,9 @@
 @extends("base")
+
+@section("custom-css")
+    @vite(['resources/css/materialize-design.css'])
+@endsection
+
 @section("title")
     Show details page
 @endsection
@@ -21,6 +26,9 @@
                 <span class="input-field" style="max-width: 250px">
                     <input type="text" id="title" value="{{ $article->title }}" name="title" required>
                     <label for="title">Titre</label>
+                    @error("title")
+                        {{$message}}
+                    @enderror
                 </span>
             </div>
             <input type="hidden" id="postId" name="id" value="{{$article->id}}" />
@@ -30,6 +38,9 @@
                           id="body" rows="3">
                     {{ $article->body }}
                 </textarea>
+                @error("body")
+                    {{$message}}
+                @enderror
             </div>
             <div class="form-group">
                 <label for="dog">Image</label>
