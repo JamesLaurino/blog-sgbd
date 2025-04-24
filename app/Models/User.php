@@ -50,6 +50,10 @@ class User extends Authenticatable
         return $this->hasMany(Friend::class);
     }
 
+//    public function getRole($userId) {
+//        return $this->;
+//    }
+
     public function starForArticle($articleId)
     {
         return $this->stars->firstWhere('article_id', $articleId);

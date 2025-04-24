@@ -47,9 +47,15 @@
                 <input type="file" name="img_path" class="form-control-file" id="dog">
             </div>
             <button class="btn btn-dark text-white mt-3" type="submit">Editer</button>
-            <a href="{{ route('admin.index') }}" class="btn btn-dark mt-3">
-                back
-            </a>
+            @if(Auth::user()->role()->get()->first()->name == "admin")
+                <a href="{{ route('admin.index') }}" class="btn btn-dark mt-3">
+                    back
+                </a>
+            @else
+                <a href="{{ route('blog.publicPage',Auth::id()) }}" class="btn btn-dark mt-3">
+                    back
+                </a>
+            @endif
         </form>
         <div class="m-5">
             <img width="250px" height="250px" src="{{ asset('storage/uploads/' . $article->img_path) }}" class="card-img-top" alt="dog">

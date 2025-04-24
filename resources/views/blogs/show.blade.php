@@ -24,10 +24,16 @@
                         <a href="{{route("blog.publicPage",$user->id)}}">{{$user->name}}</a>
                     </strong>
                 </p>
-                <div class="container d-flex justify-content-between">
-                    <a href="{{ route('blog.index') }}" class="btn btn-primary">
+                <div class="container d-flex justify-content-left">
+                    <a href="{{ route('blog.index') }}" class="btn btn-primary mr-3">
                         back
                     </a>
+                    @if(Auth::id() == $article->user_id)
+                        <a href="{{ route('admin.edit', $article->id) }}"
+                           class="text-white btn btn-dark ml-2 mr-4">
+                            Editer
+                        </a>
+                    @endif
                     <x-star-logic :articleId="$article->id"></x-star-logic>
                 </div>
             </div>
