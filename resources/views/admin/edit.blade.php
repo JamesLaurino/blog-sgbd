@@ -17,7 +17,7 @@
         <p class="h3">Formulaire de modification d'un article</p>
     </div>
     <div class="container d-flex justify-content-center mt-5">
-        <form method="POST" action="{{route('admin.update')}}"
+        <form method="POST" action="{{route('admin.update', $article->id)}}"
               enctype="multipart/form-data"
               class="form shadow p-4">
             @method('PUT')

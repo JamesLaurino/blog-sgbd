@@ -62,24 +62,11 @@ class BlogController extends Controller
         ]);
     }
 
-    public function edit($id)
-    {
-        $articles = Article::all();
-        return view("blogs.index",["articles" => $articles]);
-    }
-
-    public function destroy($id)
-    {
-        $articles = Article::all();
-        return view("blogs.index",["articles" => $articles]);
-    }
-
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required|string|max:25',
-            'body' => 'required|string|max:25',
+            'title' => 'required|string|max:50',
+            'body' => 'required|string|max:50',
             'img_path' => 'required|max:2048|mimes:jpg,png'
         ]);
 

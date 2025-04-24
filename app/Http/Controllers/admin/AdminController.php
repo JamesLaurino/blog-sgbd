@@ -8,21 +8,23 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-    public function create()
-    {
-        return view("admin.add-form");
-    }
-
+    // article with pagination for admin
     public function index()
     {
         $articles = Article::orderBy("created_at","DESC")->paginate(5);
         return view("admin.index", ["articles" => $articles]);
     }
 
+    // show details article for admin
     public function show($id)
     {
         $article = Article::findOrFail($id);
         return view("admin.show",["article" => $article]);
+    }
+
+    public function create()
+    {
+        return view("admin.add-form");
     }
 
     public function edit($id)
@@ -43,7 +45,7 @@ class AdminController extends Controller
             ->with('success', 'Article supprimé avec succès.');
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Article $article)
     {
         if($request["img_path"]) {
 

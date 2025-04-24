@@ -25,11 +25,11 @@ Route::middleware('auth')->group(function () {
 
 /*************** BLOG ***************/
 
-Route::get('/blog', [BlogController::class,'index'])->name('blog.index');
+Route::get('/blog', [BlogController::class,'index'])
+    ->name('blog.index');
 
-Route::get('/blog/{id}/show', [BlogController::class,'show'])->name('blog.show');
-
-Route::get('/blog/{id}/edit', [BlogController::class,'edit'])->name('blog.edit');
+Route::get('/blog/{id}/show', [BlogController::class,'show'])
+    ->name('blog.show');
 
 Route::get("/blog/public/{id}/user", [BlogController::class, "publicPage"])
     ->middleware("auth")
@@ -60,7 +60,7 @@ Route::DELETE("/friend", [FriendController::class, "destroy"])
     ->name("friend.destroy");
 
 
-/*************** OTHER ***************/
+/*************** USER & COMMENT ***************/
 
 Route::PUT("/user", [UserController::class,'updateAvatar'])
     ->middleware("auth")
@@ -83,17 +83,18 @@ Route::get("/admin/{id}/edit", [AdminController::class,'edit'])
     ->middleware("auth")
     ->name('admin.edit');
 
-Route::put("/admin", [AdminController::class,'update'])
-    ->middleware("auth")
-    ->name('admin.update');
-
 Route::get("/admin", [AdminController::class,'index'])
     ->middleware("auth")
     ->name('admin.index');
 
+// todo : add policies (update only his own article if not admin)
+Route::put("/admin/{article}", [AdminController::class,'update'])
+    ->middleware("auth")
+    ->name('admin.update');
+
+// todo : add policies (only admin can do that)
 Route::delete("/admin/{id}", [AdminController::class,'destroy'])
     ->middleware("auth")
     ->name('admin.destroy');
-
 
 require __DIR__.'/auth.php';
