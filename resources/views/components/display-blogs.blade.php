@@ -2,7 +2,7 @@
 
 <div class="container d-flex justify-content-right mt-3">
     <div class="shadow p-3">
-        <p>Welcome back <strong>{{$user->name}}</strong> !</p>
+        <p>User : <strong>{{$user->name}}</strong></p>
         @if(auth()->user()->id != $user->id)
             @if($friends->isEmpty())
                 <x-friend-form-add :friendId="$user->id"></x-friend-form-add>

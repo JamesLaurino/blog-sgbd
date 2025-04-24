@@ -69,7 +69,7 @@ class AdminController extends Controller
         else {
 
             $request->validate([
-                'title' => 'required|max:15',
+                'title' => 'required|max:50',
                 'body' => 'required|string|min:4',
             ]);
 
