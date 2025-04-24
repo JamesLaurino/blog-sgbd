@@ -13,7 +13,7 @@
 
 @section("body")
     <div class="container d-flex justify-content-center mt-5">
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 25rem;">
             <img src="{{ asset('storage/uploads/' . $article->img_path) }}"
                  class="card-img-top" alt="dog">
             <div class="card-body">
@@ -25,15 +25,27 @@
                     </strong>
                 </p>
                 <div class="container d-flex justify-content-left">
-                    <a href="{{ route('blog.index') }}" class="btn btn-primary mr-3">
+                    <a href="{{ route('blog.index') }}"
+                       style="max-height: 35px"
+                       class="btn btn-dark mr-2">
                         back
                     </a>
                     @if(Auth::id() == $article->user_id)
                         <a href="{{ route('admin.edit', $article->id) }}"
-                           class="text-white btn btn-dark ml-2 mr-4">
+                           style="max-height: 35px"
+                           class="text-white btn btn-dark mr-3">
                             Editer
                         </a>
+                        <button class="btnModal text-white btn btn-dark mr-3"
+                                style="max-height: 35px"
+                                data-toggle="modal"
+                                data-target="#delete-{{ $article->id }}">
+                            Delete
+                        </button>
+                        <x-modal-delete :articleId="$article->id"></x-modal-delete>
                     @endif
+                </div>
+                <div class="container d-flex justify-content-left">
                     <x-star-logic :articleId="$article->id"></x-star-logic>
                 </div>
             </div>
@@ -46,6 +58,8 @@
 
         </div>
 
+{{------------------- Commentaire + Rating -------------------}}
+{{------------------------------------------------------------}}
         <div class="ml-5">
             <form method="POST" action="{{route('comment.create')}}"
                   class="form shadow p-4">

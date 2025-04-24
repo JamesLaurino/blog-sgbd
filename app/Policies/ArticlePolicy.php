@@ -47,7 +47,8 @@ class ArticlePolicy
      */
     public function delete(User $user, Article $article): bool
     {
-        return $user->role()->get()->first()->name == "admin";
+        return $user->role()->get()->first()->name == "admin"
+            || $user->id == $article->user_id;
     }
 
     /**

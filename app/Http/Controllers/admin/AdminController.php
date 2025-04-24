@@ -33,10 +33,11 @@ class AdminController extends Controller
         return view("admin.edit",["article" => $article]);
     }
 
-    // todo : add policies (only admin can do that)
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        $article = Article::findOrFail($id);
+
+        $this->authorize('delete', $article);
+
         $pathLink = $article->img_path;
 
         $article->delete();
@@ -46,9 +47,10 @@ class AdminController extends Controller
             ->with('success', 'Article supprimé avec succès.');
     }
 
-    // todo : add policies (update only his own article if not admin)
     public function update(Request $request, Article $article)
     {
+        $this->authorize('update', $article);
+
         if($request["img_path"]) {
 
             $request->validate([

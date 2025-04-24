@@ -87,13 +87,11 @@ Route::get("/admin", [AdminController::class,'index'])
     ->middleware("auth")
     ->name('admin.index');
 
-// todo : add policies (update only his own article if not admin)
 Route::put("/admin/{article}", [AdminController::class,'update'])
     ->middleware("auth")
     ->name('admin.update');
 
-// todo : add policies (only admin can do that)
-Route::delete("/admin/{id}", [AdminController::class,'destroy'])
+Route::delete("/admin/{article}", [AdminController::class,'destroy'])
     ->middleware("auth")
     ->name('admin.destroy');
 

@@ -22,7 +22,7 @@ class CommentController extends Controller
             'article_id' => $request["id"]
         ]);
 
-        return redirect()->route('blog.index')
+        return redirect()->route('blog.show', $request['id'])
             ->with('success', 'Commentaire ajouté avec succès.');
     }
 }
